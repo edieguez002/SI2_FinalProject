@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>LANDETXEA</title>
+            <link href="css/styles.css" rel="stylesheet"/>
+        </f:facet>
+    </h:head>
+
+    <h:body>
+        <div id="wrapper">
+            <div id="header-wrapper">
+                <div id="header" class="container">
+                    <div id="logo">
+                        <h1><a href="#">LANDETXEA</a></h1>
+                    </div>
+                    <div id="menu1">
+                        <ul>
+                            <li><input class="myButton" type="button" value="Login" id="loginbtn" onclick="PF('dlg1').show();"/></li>
+                            <li><input class="myButton" type="button" value="SignUp" id="signupbtn" onclick="PF('dlg2').show();"/></li>
+                        </ul>
+
+                        <h:form>
+                            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+                            <p:dialog header="Login" widgetVar="dlg1" resizable="false">
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <h:outputLabel for="username" value="Username:" />
+                                    <p:inputText id="username_login" value="#{userLoginView.username}" required="true" label="username" />
+
+                                    <h:outputLabel for="password" value="Password:" />
+                                    <p:password id="password_login" value="#{userLoginView.password}" required="true" label="password" />
+
+                                    <f:facet name="footer">
+                                        <p:commandButton value="Login" update="growl" actionListener="#{userLoginView.login}"
+                                                         oncomplete="handleLoginRequest(xhr, status, args)" />
+                                    </f:facet>  
+                                </h:panelGrid>
+                            </p:dialog>
+                        </h:form>
+                        <h:form>
+                            <p:growl id="growl1" sticky="true" showDetail="true" life="3000" />
+                            <p:dialog header="Erregistratu" widgetVar="dlg2" resizable="false">
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <h:outputLabel for="username" value="Username:" />
+                                    <p:inputText id="username" value="#{userSignUpView.username}" required="true" label="username" />
+
+                                    <h:outputLabel for="password" value="Password:" />
+                                    <p:password id="password" value="#{userSignUpView.password}" required="true" label="password" />
+
+                                    <f:facet name="footer">
+                                        <p:commandButton value="Erregistratu" update="growl1" actionListener="#{userSignUpView.signup}"
+                                                         oncomplete="handleSignupRequest(xhr, status, args)" />
+                                    </f:facet>  
+                                </h:panelGrid>
+                            </p:dialog>
+                        </h:form>
+                    </div>
+                    <div id="menu">
+                        <ul>
+                            <li><a href="faces/index.xhtml">HASIERA</a></li>
+                            <li><a href="faces/landetxeakikusi.xhtml">LANDETXEAK IKUSI</a></li>
+                            <li class="current_page_item"<a href="#">KONTAKTUA</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div id="banner">
+
+                    <img src="images/ruralhouse.jpg" width="1000" height="230" alt="" />
+
+                </div>
+            </div>
+            <!-- end #header -->
+            <div id="page">
+                <div class="post">
+                    <h2 class="title"><a href="#">Ongi etorri gure orrialdera </a></h2>
+                    <div class="entry">
+                        <p>This is <strong>Consecutive</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.   The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
+                        <p>Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl. Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Duis pretium velit ac mauris. Proin eu wisi suscipit nulla suscipit interdum. Aenean lectus lorem, imperdiet at, ultrices eget, ornare et, wisi. Pellentesque adipiscing purus ac magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Consectetuer adipiscing elit. Nam pede erat, porta.<br />
+                        </p>
+                    </div>
+                </div>
+                <!-- end #content -->
+                <div style="clear: both;">&nbsp;</div>
+            </div>
+            <!-- end #page --> 
+        </div>
+        <div id="footer">
+            <p>&copy; Untitled. All rights reserved. Images by <a href="http://fotogrph.com/">Fotogrph</a>. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+        </div>
+        <!-- end #footer -->
+    </h:body>
+    <script type="text/javascript">
+        function handleLoginRequest(xhr, status, args) {
+            if (args.validationFailed || !args.loggedIn) {
+                PF('dlg1').jq.effect("shake", {times: 5}, 100);
+            }
+            else {
+                PF('dlg1').hide();
+                $('#loginLink').fadeOut();
+            }
+        }
+        function handleSignupRequest(xhr, status, args) {
+            if (args.validationFailed || !args.loggedIn) {
+                PF('dlg2').jq.effect("shake", {times: 5}, 100);
+            }
+            else {
+                PF('dlg2').hide();
+                $('#loginLink').fadeOut();
+            }
+        }
+    </script>
+</html>
+
+
